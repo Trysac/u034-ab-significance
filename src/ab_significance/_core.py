@@ -22,6 +22,8 @@ logger.addHandler(logging.NullHandler())
 MAX_SAMPLE_SIZE = 1_000_000
 # Largest number of permutations accepted.
 MAX_ITERATIONS = 1_000_000
+# Largest permutation_test work budget: iterations * (len(a) + len(b)).
+MAX_WORK = 500_000_000
 
 _MAX_COUNT = 10**15
 _MAX_ABS_VALUE = 1e150
@@ -282,6 +284,11 @@ def permutation_test(
         raise InvalidInput(f"paired samples need equal length, got {len(first)} and {len(second)}")
     rounds = _check_int("iterations", iterations, 1, MAX_ITERATIONS)
     seed_value = _check_int("seed", seed, -_MAX_SEED, _MAX_SEED)
+    if rounds * (len(first) + len(second)) > MAX_WORK:
+        raise InvalidInput(
+            f"iterations * total sample size must be at most {MAX_WORK}, "
+            f"got {rounds * (len(first) + len(second))}"
+        )
     size_a = len(first)
     size_b = len(second)
     observed = math.fsum(first) / size_a - math.fsum(second) / size_b
