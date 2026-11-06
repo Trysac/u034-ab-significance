@@ -288,7 +288,9 @@ def permutation_test(
     threshold = abs(observed) - _PERMUTATION_TOLERANCE
     rng = _Rng(seed_value)
     count = 0
-    logger.debug("permutation_test: n_a=%d n_b=%d rounds=%d paired=%s", size_a, size_b, rounds, paired)
+    logger.debug(
+        "permutation_test: n_a=%d n_b=%d rounds=%d paired=%s", size_a, size_b, rounds, paired
+    )
     if paired:
         diffs = [x - y for x, y in zip(first, second, strict=True)]
         for _ in range(rounds):
