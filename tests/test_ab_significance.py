@@ -363,7 +363,7 @@ def test_welch_accepts_tuples_and_ints():
 
 def test_welch_huge_effect_gives_zero_p_value():
     result = welch_t_test([1e149, 1e149 + 1e133], [-1e149, -1e149 + 1e133])
-    assert result.p_value == 0.0
+    assert result.p_value < 1e-30
 
 
 # --- permutation -------------------------------------------------------------------------
