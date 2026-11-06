@@ -2,12 +2,12 @@
 
 ## Objective
 
-Pure-Python significance tests for prompt or model variants: Wilson and Newcombe intervals, two-proportion z, Welch t, seeded permutation tests
+Provide pure-Python significance tests and confidence intervals for comparing two prompt or model variants, so that a reported difference can be checked against sampling noise without installing SciPy. Reference values are checked against SciPy and statsmodels.
 
 ## Scope
 
-- In scope: the public API documented in [README.md](../README.md), typed and tested.
-- Out of scope: anything that needs runtime dependencies or I/O without an accepted ADR.
+- In scope: Wilson score intervals, two-proportion z test with Newcombe hybrid score interval, Welch t test, seeded two-sided permutation tests (paired and unpaired), and per-arm sample size by Fleiss without continuity correction.
+- Out of scope: Bayesian A/B testing, sequential testing, multiple-comparison corrections, bootstrap intervals, plotting, and any runtime dependency or I/O without an accepted ADR.
 
 ## Timeline
 
